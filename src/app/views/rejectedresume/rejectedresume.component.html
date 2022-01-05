@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-header">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">Rejected Resume Details</div>
+    </div>
+    <div class="card-body">
+        <kendo-grid [data]="gridData" [height]="533" 
+        [pageable]="true" [sortable]="true" (edit)="editHandler($event)" (remove)="removeHandler($event)" (cancel)="rejectHandler($event)" [navigable]="true" 
+        (dataStateChange)="onStateChange($event)" [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
+        >
+            <kendo-grid-column field="resumeid" title="ID"> </kendo-grid-column>
+            <kendo-grid-column field="candidatename" title="CandidateName"></kendo-grid-column>
+            <kendo-grid-column field="skill" title="Skill"> </kendo-grid-column>
+            <kendo-grid-column field="email" title="Email"> </kendo-grid-column>
+            <kendo-grid-column field="contactno" title="ContactNo"> </kendo-grid-column>
+            <kendo-grid-column field="highestqualification" title="HighestQualification"> </kendo-grid-column>
+            <!-- <kendo-grid-command-column title="command" width="220">
+                <ng-template kendoGridCellTemplate let-isNew="isNew">
+                    <button kendoGridEditCommand [primary]="true">Edit</button>
+                    <button kendoGridRemoveCommand>Approve</button>
+                    <button kendoGridCancelCommand>Reject</button>
+                </ng-template>
+            </kendo-grid-command-column> -->
+        </kendo-grid>
+        
+    </div>
+</div>

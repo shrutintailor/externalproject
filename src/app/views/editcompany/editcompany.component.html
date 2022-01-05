@@ -1,0 +1,69 @@
+<div class="example">
+  <form class="k-form" [formGroup]="form" method="post" (ngSubmit)="onSubmit()">
+    <h5>Update Company</h5>
+    <kendo-formfield>
+      <kendo-label [for]="companyName" text="Company Name"></kendo-label>
+      <input formControlName="companyname" kendoTextBox #companyname class="form-control" [(ngModel)]=data.companyname/>
+      <kendo-formerror>Error: Company Name is required</kendo-formerror>
+    </kendo-formfield>
+    <kendo-formfield>
+      <kendo-label [for]="email" text="Email"></kendo-label>
+      <input formControlName="email" kendoTextBox #email  class="form-control" [(ngModel)]=data.email/>
+      <kendo-formerror *ngIf="form.controls.email.errors?.required">Error: Email is required</kendo-formerror>
+      <kendo-formerror *ngIf="form.controls.email.errors?.email">Error: Not valid email format</kendo-formerror>
+    </kendo-formfield>
+    <kendo-formfield>
+      <kendo-label [for]="type" text="Type"></kendo-label>
+      <input formControlName="type" kendoTextBox #type [(ngModel)]=data.type/>
+      <kendo-formerror>Error: Type is required</kendo-formerror>
+    </kendo-formfield>  
+      
+    <kendo-formfield>
+      <kendo-label [for]="contactno" text="contactno"></kendo-label>
+      <input formControlName="contactno" kendoTextBox #contactno [(ngModel)]=data.contactno/>
+      <kendo-formerror>Error: contactno is required</kendo-formerror>
+    </kendo-formfield>  
+    <kendo-formfield>
+      <kendo-label [for]="address" text="Address"></kendo-label>
+      <input formControlName="address" kendoTextBox #address [(ngModel)]=data.address/>
+      <kendo-formerror>Error: Address is required</kendo-formerror>
+    </kendo-formfield>
+    
+    <kendo-formfield showHints="initial" showErrors="initial">
+      <kendo-label [for]="state" text="State"></kendo-label>
+      <kendo-autocomplete #state [data]="states" formControlName="state" [(ngModel)]=data.state>
+      </kendo-autocomplete>
+      <kendo-formhint align="start">Hint: Only Indian States</kendo-formhint>
+      <kendo-formerror *ngIf="!form.controls.state.required">Error: State is required</kendo-formerror>
+    </kendo-formfield>
+
+    <kendo-formfield showHints="initial" showErrors="initial">
+      <kendo-label [for]="city" text="City"></kendo-label>
+      <kendo-autocomplete #city [data]="citys" formControlName="city" [(ngModel)]=data.city>
+      </kendo-autocomplete>
+      <kendo-formhint align="start">Hint: Only Indian City</kendo-formhint>
+      <kendo-formerror *ngIf="!form.controls.city.required">Error: City is required</kendo-formerror>
+    </kendo-formfield>
+    <kendo-formfield>
+      <kendo-label [for]="website" text="Website Url"></kendo-label>
+      <input formControlName="website" kendoTextBox #website [(ngModel)]=data.website/>
+      <kendo-formerror>Error: Website Url is required</kendo-formerror>
+    </kendo-formfield>
+    <kendo-formfield>
+      <kendo-label [for]="linkdin" text="LinkDin Url"></kendo-label>
+      <input formControlName="linkdin" kendoTextBox #linkdin [(ngModel)]=data.linkdin/>
+      <kendo-formerror>Error: LinkDin Url is required</kendo-formerror>
+    </kendo-formfield>
+    <kendo-formfield>
+      <kendo-label [for]="glassdoor" text="Glass Door"></kendo-label>
+      <input formControlName="glassdoor" kendoTextBox #glassdoor [(ngModel)]=data.glassdoor/>
+      <kendo-formerror>Error: LinkDin Url is required</kendo-formerror>
+    </kendo-formfield>
+    <div class="k-form-buttons">
+      <button class="k-button k-primary" >
+        Submit
+      </button>
+      <button class="k-button" (click)="clearForm()">Clear</button>
+    </div>
+  </form>
+  </div>

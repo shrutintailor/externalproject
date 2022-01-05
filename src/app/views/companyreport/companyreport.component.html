@@ -1,0 +1,23 @@
+<div class="card">
+    <div class="card-header">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">Company Details</div>
+    </div>
+    <div class="card-body">
+        <kendo-grid [kendoGridBinding]="gridData" [pageSize]="10" [pageable]="true" [sortable]="true" [filterable]="true"  [height]="510">
+            <ng-template kendoGridToolbarTemplate>
+                <button type="button" kendoGridExcelCommand icon="file-excel">
+                  Export to Excel
+                </button>
+              </ng-template>
+            <kendo-grid-column field="companyName" [width]="170"></kendo-grid-column>
+            <kendo-grid-column field="address" [width]="170"></kendo-grid-column>
+            <kendo-grid-column field="email" [width]="170"></kendo-grid-column>
+            <kendo-grid-column field="contactno" [width]="170"></kendo-grid-column>
+            <kendo-grid-column field="type" [width]="170"></kendo-grid-column>
+            <kendo-grid-column field="status" [width]="170"></kendo-grid-column>
+            <kendo-grid-column field="city" [width]="170"></kendo-grid-column>
+            <kendo-grid-column field="points" [width]="170"></kendo-grid-column>
+            <kendo-grid-excel fileName="CompanyReport.xlsx"></kendo-grid-excel>
+    </kendo-grid>
+    </div>
+</div>

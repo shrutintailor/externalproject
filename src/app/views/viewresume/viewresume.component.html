@@ -1,0 +1,51 @@
+<div class="card">
+    <div class="card-header">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">Resume Details</div>
+            
+    </div>
+    <div class="card-body">
+        <kendo-grid [kendoGridBinding]="gridData" 
+        [filterable]="true" 
+        (dataStateChange)="onStateChange($event)"
+        [pageSize]="gridState.take"
+         [skip]="gridState.skip" 
+         [sort]="gridState.sort" 
+         [pageable]="true"
+       
+        >
+         <!-- selectable="true"
+        [kendoGridSelectBy]="rowSelectionKey"
+        [selectedKeys]="selectedKeys" -->
+            <!-- <kendo-grid-command-column title="command" width="220">
+                <ng-template kendoGridCellTemplate let-isNew="isNew">
+                    <button kendoGridEditCommand [primary]="true">Edit</button>
+                    <button kendoGridRemoveCommand>Remove</button>
+                    <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button>
+                    <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+                </ng-template>e
+            </kendo-grid-command-column> -->
+            <kendo-grid-column field="id" [width]="100" title="ID"></kendo-grid-column>
+            <!-- <kendo-grid-column field="companyid" [width]="150" title="CompanyId"></kendo-grid-column> -->
+            <kendo-grid-column field="candidatename" [width]="150" title="CandidateName"></kendo-grid-column>
+            <kendo-grid-column field="dob" [width]="150" title="Date of Birth"></kendo-grid-column>
+            <kendo-grid-column field="gender" [width]="150" title="Gender"></kendo-grid-column>
+            <kendo-grid-column field="skill" [width]="150" title="Skill"></kendo-grid-column>
+            <kendo-grid-column field="phoneNumber" [width]="150" title="ContactNo"></kendo-grid-column>
+            <kendo-grid-column field="email" [width]="150" title="Email"></kendo-grid-column>
+            <kendo-grid-column field="state" [width]="150" title="State"></kendo-grid-column>
+            <kendo-grid-column field="city" [width]="150" title="City"></kendo-grid-column>
+            <kendo-grid-column field="highestqulification" [width]="150" title="Qualification"></kendo-grid-column>
+            <kendo-grid-column field="previouscompany" [width]="150" title="PreviousCompany"></kendo-grid-column>
+            <kendo-grid-column field="approved" [width]="150" title="Approved"></kendo-grid-column>
+            <kendo-grid-column field="createdAt" [width]="150" title="CreatedAt"></kendo-grid-column>
+              <kendo-grid-command-column title="command" width="220">
+                <ng-template kendoGridCellTemplate let-dataitem>
+                  
+                    <button kendoButton (click)="add(dataitem.id)" >view</button>
+                   
+                </ng-template>
+            </kendo-grid-command-column>
+            
+    </kendo-grid>
+    </div>
+</div>

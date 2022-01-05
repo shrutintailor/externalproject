@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="card-header">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">Company Details</div>
+            
+    </div>
+    <div class="card-body">
+        <kendo-grid [kendoGridBinding]="gridData" [filterable]="true" (dataStateChange)="onStateChange($event)" [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort" [pageable]="true">
+            <kendo-grid-command-column title="command" width="220">
+                <ng-template kendoGridCellTemplate let-isNew="isNew">
+                    <button kendoGridEditCommand [primary]="true">Edit</button>
+                    <button kendoGridRemoveCommand>Remove</button>
+                    <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button>
+                    <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+                </ng-template>
+            </kendo-grid-command-column>
+            <kendo-grid-column field="companyName" title="CompanyName" width="170"> </kendo-grid-column>
+            <kendo-grid-column field="email" title="Email" width="170"></kendo-grid-column>
+            <kendo-grid-column field="address" title="Address" width="170"> </kendo-grid-column>
+            <kendo-grid-column field="contactno" title="ContactNo" width="170"> </kendo-grid-column>
+            <kendo-grid-column field="state" title="State" width="170"> </kendo-grid-column>
+            <kendo-grid-column field="city" title="City" width="170"> </kendo-grid-column>
+            <kendo-grid-column field="website" title="Website" width="170"> </kendo-grid-column>
+            <kendo-grid-column field="linkdin" title="Linkdin" width="170"> </kendo-grid-column>
+            <kendo-grid-column field="glassdoor" title="Glassdoor" width="170"> </kendo-grid-column>
+    </kendo-grid>
+    </div>
+</div>

@@ -1,0 +1,135 @@
+<div class="example">
+    <form class="k-form" [formGroup]="form" (ngSubmit)="onSubmit()" >
+      <h5>Update Resume</h5>
+      <kendo-formfield>
+        <kendo-label [for]="can" text="Candidate Name"></kendo-label>
+        <kendo-textbox class="form-control" formControlName="candidatename" [clearButton]="true" #candidatename [(ngModel)]=data.candidatename required [ngClass]="{ 'ng-invalid ng-touched': submitted && f.candidatename.errors }"s></kendo-textbox>
+        <div *ngIf="submitted && form.controls.candidatename.errors" class="k-tooltip-validation"> </div>
+        <kendo-formerror *ngIf="form.controls.candidatename.errors?.required" >Error: Candidate Name is required</kendo-formerror>
+      </kendo-formfield>
+  
+      <kendo-formfield>
+        <kendo-label [for]="email" text="Email"></kendo-label>
+        <kendo-textbox formControlName="email" [clearButton]="true" #email [(ngModel)]=data.email required></kendo-textbox>
+        <kendo-formerror *ngIf="form.controls.email.errors?.required">Error: Email is required</kendo-formerror>
+        <kendo-formerror *ngIf="form.controls.email.errors?.email">Error: Not valid email format</kendo-formerror>
+      </kendo-formfield>
+  
+      <kendo-formfield>
+        <kendo-label [for]="phoneNumber" text="Phone Number"></kendo-label>
+        <kendo-maskedtextbox #phoneNumber formControlName="phoneNumber" [mask]="phoneNumberMask" [(ngModel)]=data.phoneNumber [value]="phoneNumberValue"></kendo-maskedtextbox>
+        <kendo-formerror>
+          <div *ngIf="form.controls.phoneNumber.errors">
+            Error: Not a valid phone number format
+          </div>
+          <div *ngIf="form.controls.phoneNumber.errors?.required">
+            Error: Phone number is required
+          </div>
+        </kendo-formerror>
+      </kendo-formfield>
+  
+      <div class="wrap">
+        <kendo-formfield showHints="initial" showErrors="initial">
+            <kendo-label [for]="state" text="State"></kendo-label>
+            <kendo-autocomplete #state [data]="states" formControlName="state" [(ngModel)]=data.state >
+            </kendo-autocomplete>
+            <kendo-formhint align="start">Hint: Only Indian States</kendo-formhint>
+            <kendo-formerror *ngIf="!form.controls.state.required">Error: State is required</kendo-formerror>
+          </kendo-formfield>
+  
+          <kendo-formfield showHints="initial" showErrors="initial">
+            <kendo-label [for]="city" text="City"></kendo-label>
+            <kendo-autocomplete #city [data]="citys" formControlName="city" [(ngModel)]=data.city >
+            </kendo-autocomplete>
+            <kendo-formhint align="start">Hint: Only Indian City</kendo-formhint>
+            <kendo-formerror *ngIf="!form.controls.city.required">Error: City is required</kendo-formerror>
+          </kendo-formfield>
+      </div>
+      <kendo-formfield class="arrival-date">
+        <kendo-label [for]="dateofbirth" text="DateOfBirth"></kendo-label>
+        <kendo-datepicker
+          #dateofbirth
+          formControlName="dateofbirth"
+          [(ngModel)]=data.dateofbirth
+        ></kendo-datepicker>
+        <kendo-formerror>Error: Date Of Birth is required</kendo-formerror>
+      </kendo-formfield>
+      <kendo-formfield orientation="horizontal" showHints="initial">
+        <label class="k-label">Gender</label>
+  
+        <ul class="k-radio-list k-list-horizontal">
+          <li class="k-radio-item">
+            <input
+              type="radio"
+              #male
+              value="male"
+              kendoRadioButton
+              formControlName="gender"
+              [(ngModel)]=data.gender
+            />
+            <kendo-label
+              class="k-radio-label"
+              [for]="male"
+              text="Male"
+            ></kendo-label>
+          </li>
+  
+          <li class="k-radio-item">
+            <input
+              type="radio"
+              #female
+              value="female"
+              kendoRadioButton
+              formControlName="gender"
+              [(ngModel)]=data.gender
+            />
+            <kendo-label
+              class="k-radio-label"
+              [for]="female"
+              text="Female"
+            ></kendo-label>
+          </li>
+  
+          <li class="k-radio-item">
+            <input
+              type="radio"
+              #other
+              value="other"
+              kendoRadioButton
+              formControlName="gender"
+              [(ngModel)]=data.gender
+            />
+            <kendo-label
+              class="k-radio-label"
+              [for]="other"
+              text="Other"
+            ></kendo-label>
+          </li>
+        </ul>
+  
+        <kendo-formerror>Error: This field is required</kendo-formerror>
+      </kendo-formfield>
+      <kendo-formfield>
+        <kendo-label [for]="skill" text="Skill"[optional]="true"></kendo-label>
+        <kendo-textarea #address formControlName="skill" resizable="vertical" [(ngModel)]=data.skill ></kendo-textarea>
+      </kendo-formfield>
+      <kendo-formfield>
+        <kendo-label [for]="highestqualification" text="HighestQualification"></kendo-label>
+        <kendo-textbox formControlName="highestqualification" [clearButton]="true" #highestqualification  [(ngModel)]=data.highestqualification required></kendo-textbox>
+        <kendo-formerror>Error: HighestQualification is required</kendo-formerror>
+      </kendo-formfield>
+      <kendo-formfield>
+        <kendo-label [for]="previouscompany" text="PreviousCompany"></kendo-label>
+        <kendo-textbox formControlName="previouscompany" [clearButton]="true" #previouscompany [(ngModel)]=data.previouscompany required></kendo-textbox>
+        <kendo-formerror>Error: Previous Company is required</kendo-formerror>
+      </kendo-formfield>
+      
+      <div class="k-form-buttons">
+        <button class="k-button k-primary" >
+          Submit
+        </button>
+        <button class="k-button" (click)="clearForm()">Clear</button>
+      </div>
+    </form>
+    
+  </div>

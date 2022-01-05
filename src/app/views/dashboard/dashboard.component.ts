@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
-
+import { RegisterService } from '../../../app/shared/service/register.service';
+import { Router } from '@angular/router';
 @Component({
   templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
+  public getval=window.sessionStorage.getItem("username");
 
+  constructor(private service:RegisterService,private router:Router) { 
+  }
   radioModel: string = 'Month';
 
   // lineChart1
@@ -376,13 +380,49 @@ export class DashboardComponent implements OnInit {
   public random(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
-
+  public companyCount: any;
+  public resumeCount: any;
+  public approveCount: any;
+  public pendingCount: any;
+  
   ngOnInit(): void {
-    // generate random values for mainChart
-    for (let i = 0; i <= this.mainChartElements; i++) {
-      this.mainChartData1.push(this.random(50, 200));
-      this.mainChartData2.push(this.random(80, 100));
-      this.mainChartData3.push(65);
+    if(this.getval==null)
+    {
+      alert("Please Login");
+      this.router.navigate(["/login"]);
     }
+    else
+    {
+      this.displaycount();
+      this.resumecount();
+      this.approvecount();
+      this.pendingcount();
+      // generate random values for mainChart
+      for (let i = 0; i <= this.mainChartElements; i++) {
+        this.mainChartData1.push(this.random(50, 200));
+        this.mainChartData2.push(this.random(80, 100));
+        this.mainChartData3.push(65);
+      }
+    }
+  }
+  public displaycount(){
+    this.service.displaycompanycount().subscribe(data=>{
+      this.companyCount=data;
+    });
+  }
+  public resumecount(){
+    this.service.displayresumecount().subscribe(data=>{
+      this.resumeCount=data;
+    });
+  }
+  public approvecount(){
+    this.service.displayapprovecount().subscribe(data=>{
+      this.approveCount=data;
+    });
+  }
+  public pendingcount(){
+    this.service.displaypendingcount().subscribe(data=>{
+      this.pendingCount=data;
+    });
   }
 }

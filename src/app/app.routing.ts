@@ -6,13 +6,16 @@ import { DefaultLayoutComponent } from './containers';
 
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
+import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
+import { ResetpasswordComponent } from './views/resetpassword/resetpassword.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    //When Browswer start first login page open
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
@@ -34,6 +37,27 @@ export const routes: Routes = [
     component: LoginComponent,
     data: {
       title: 'Login Page'
+    }
+  },
+  {
+    path: 'forgotpassword',
+    component: ForgotpasswordComponent,
+    data: {
+      title: 'ForgotPassword Page'
+    }
+    // children:[
+    //   {
+    //     path: 'resetpassword',
+    //     loadChildren: () => import('./views/resetpassword/resetpassword.module').then(m =>m.ResetpasswordModule)
+    //   },
+      
+    // ]
+  },
+  {
+    path: 'resetpassword',
+    component: ResetpasswordComponent,
+    data: {
+      title: 'ResetPassword'
     }
   },
   {
@@ -67,6 +91,10 @@ export const routes: Routes = [
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
+        path: 'companydashboard',
+        loadChildren: () => import('./views/companydashboard/companydashboard.module').then(m => m.CompanydashboardModule)
+      },
+      {
         path: 'icons',
         loadChildren: () => import('./views/icons/icons.module').then(m => m.IconsModule)
       },
@@ -81,6 +109,58 @@ export const routes: Routes = [
       {
         path: 'widgets',
         loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
+      },
+      {
+        path: 'upload-resume',
+        loadChildren: () => import('./views/upload-resume/uploadresume.module').then(m =>m.UploadresumeModule)
+      },
+      {
+        path: 'companyreport',
+        loadChildren: () => import('./views/companyreport/companyreport.module').then(m =>m.CompanyreportModule)
+      },
+      {
+        path: 'changepassword',
+        loadChildren: () => import('./views/changepassword/changepassword.module').then(m =>m.ChangepasswordModule)
+      },
+      {
+        path: 'resumereport',
+        loadChildren: () => import('./views/resumereport/resumereport.module').then(m =>m.ResumereportModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./views/profile/profile.module').then(m =>m.ProfileModule)
+      },
+      {
+        path: 'viewresume',
+        loadChildren: () => import('./views/viewresume/viewresume.module').then(m =>m.ViewresumeModule)
+      },
+      {
+        path: 'approveresume',
+        loadChildren: () => import('./views/approveresume/approveresume.module').then(m =>m.ApproveresumeModule)
+      },
+      {
+        path: 'rejectedresume',
+        loadChildren: () => import('./views/rejectedresume/rejectedresume.module').then(m =>m.RejectedresumeModule)
+      },
+      {
+        path: 'viewcompany',
+        loadChildren: () => import('./views/viewcompany/viewcompany.module').then(m =>m.ViewcompanyModule)
+      },
+      {
+        path: 'approvecompany',
+        loadChildren: () => import('./views/approvecompany/approvecompany.module').then(m =>m.ApprovecompanyModule)
+      },
+      {
+        path: 'rejectedcompany',
+        loadChildren: () => import('./views/rejectedcompany/rejectedcompany.module').then(m =>m.RejectedcompanyModule)
+      },
+      {
+        path: 'editresume',
+        loadChildren: () => import('./views/editresume/editresume.module').then(m =>m.EditresumeModule)
+      },
+      {
+        path: 'editcompany',
+        loadChildren: () => import('./views/editcompany/editcompany.module').then(m =>m.EditcompanyModule)
       }
     ]
   },
