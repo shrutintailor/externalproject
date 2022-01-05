@@ -71,6 +71,7 @@ import { EditcompanyComponent } from './views/editcompany/editcompany.component'
 import { RejectedcompanyComponent } from './views/rejectedcompany/rejectedcompany.component';
 import { RejectedresumeComponent } from './views/rejectedresume/rejectedresume.component';
 import { CompanydashboardComponent } from './views/companydashboard/companydashboard.component';
+import { CompanyapproveresumeComponent } from './views/companyapproveresume/companyapproveresume.component';
 
 
 
@@ -135,7 +136,8 @@ import { CompanydashboardComponent } from './views/companydashboard/companydashb
     EditcompanyComponent,
     RejectedcompanyComponent,
     RejectedresumeComponent,
-    CompanydashboardComponent
+    CompanydashboardComponent,
+    CompanyapproveresumeComponent
   ],
   providers: [
     {

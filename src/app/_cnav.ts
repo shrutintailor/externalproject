@@ -27,14 +27,9 @@ export const cnavItems: INavData[] = [
       },
       {
         name: 'Approve Resume',
-        url: '/approveresume',
+        url: '/companyapproveresume',
         icon: 'icon-puzzle'
-      },
-      {
-        name: 'Rejected Resume',
-        url: '/rejectedresume',
-        icon: 'icon-puzzle'
-      },
+      }
     ]
   },
   {

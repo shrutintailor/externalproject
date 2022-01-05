@@ -146,6 +146,7 @@ import { FileRestrictions } from '@progress/kendo-angular-upload';
 import { LoginService } from '../../shared/service/login.service';
 import { RegisterService } from '../../shared/service/register.service';
 import { UpladresumeService } from '../../shared/service/upladresume.service';
+import { ResumereportRoutingModule } from '../resumereport/resumereport-routing.module';
 import {states,citys,types} from './data';
 @Component({
   selector: 'app-upload-resume',
@@ -238,7 +239,14 @@ export class UploadResumeComponent implements OnInit {
     
   //   //console.log(this.form.value);
   // }
- 
+  randomString(length: number) {
+    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var result = '';
+    for ( var i = 0; i < length; i++ ) {
+        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+    }
+    return result;
+}
   handleFileInput(e:any)
   {
 
@@ -248,30 +256,32 @@ export class UploadResumeComponent implements OnInit {
 
          
   public onSubmit() {
-    debugger;
     this.submitted = true;
     if (this.form.invalid) {
        
       return this.form.markAllAsTouched();
     }
-    // var companydata={
-    //   candidatename:this.data.candidatename,
-    //   email:this.data.email,
-    //   phoneNumber:this.data.phoneNumber,
-    //   skill:this.data.skill,
-    //   state:this.data.state,
-    //   city:this.data.city,
-    //   type:this.data.type,
-    //   gender:this.data.gender,
-    //   highestqualification:this.data.highestqualification,
-    //   previouscompany: this.data.previouscompany,
-    //   currentcompany: this.data.currentcompany,
-    //   dateofbirth:this.data.dateofbirth,
-    //   upload:this.data.upload,
-   // Date = this.form.value.dateofbirth;
-   
-    console.log(this.form.value);
-    this.service.upload(this.form.value)
+    var companyusername=window.sessionStorage.getItem("username");
+    var resumeid=this.randomString(10);
+    var companydata={
+      resume_id:resumeid,
+      company_username:companyusername,
+      candidatename:this.form.value.candidatename,
+      email:this.form.value.email,
+      phoneNumber:this.form.value.phoneNumber,
+      skill:this.form.value.skill,
+      state:this.form.value.state,
+      city:this.form.value.city,
+      type:this.form.value.type,
+      gender:this.form.value.gender,
+      highestqualification:this.form.value.highestqualification,
+      previouscompany: this.form.value.previouscompany,
+      dateofbirth:this.form.value.dateofbirth,
+      upload:this.form.value.upload,
+      dob:this.form.value.dateofbirth
+    }
+    console.log(companydata);
+    this.service.upload(companydata)
     .subscribe(res=>{
       if(res.toString())
       {

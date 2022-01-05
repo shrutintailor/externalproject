@@ -16,6 +16,8 @@ export class UpladresumeService {
     console.log(date)
     debugger;
     const formData:FormData=new FormData();
+    formData.append('ResumeId',objData.resume_id);
+    formData.append('CompanyUsername',objData.company_username);
     formData.append('candidatename',objData.candidatename);
     formData.append('gender',objData.gender);
     formData.append('skill',objData.skill);

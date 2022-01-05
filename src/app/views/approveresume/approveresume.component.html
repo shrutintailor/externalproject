@@ -15,8 +15,8 @@
             <kendo-grid-column field="highestqualification" title="HighestQualification"> </kendo-grid-column>
             <kendo-grid-command-column title="command" width="220">
                 <ng-template kendoGridCellTemplate let-dataItem>
-                    <button kendoGridEditCommand [primary]="true">Edit</button>
-                    <button (click)="approveHandler(dataItem)">Approve</button>
+                    <button  kendoGridEditCommand>Edit</button>
+                    <button kendoButton (click)="approveHandler(dataItem)">Approve</button>
                     <button kendoGridRemoveCommand>Reject</button>
                 </ng-template>
             </kendo-grid-command-column>

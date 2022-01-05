@@ -139,6 +139,10 @@ export const routes: Routes = [
         loadChildren: () => import('./views/approveresume/approveresume.module').then(m =>m.ApproveresumeModule)
       },
       {
+        path: 'companyapproveresume',
+        loadChildren: () => import('./views/companyapproveresume/companyapproveresume.module').then(m =>m.CompanyapproveresumeModule)
+      },
+      {
         path: 'rejectedresume',
         loadChildren: () => import('./views/rejectedresume/rejectedresume.module').then(m =>m.RejectedresumeModule)
       },
