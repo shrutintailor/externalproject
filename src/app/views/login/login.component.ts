@@ -52,12 +52,12 @@ export class LoginComponent implements OnInit {
         
           this.router.navigate(['/companydashboard']);  
           this.notificationService.show({
-            content: "successFull  login",
-            hideAfter: 600,
-            position: { horizontal: "center", vertical: "top" },
-            animation: { type: "fade", duration: 1000 },
-            type: { style: "success", icon: false },
-          });
+          content: "successFull  login",
+          hideAfter: 600,
+          position: { horizontal: "center", vertical: "bottom" },
+          animation: { type: "fade", duration: 1000 },
+          type: { style: "success", icon: false },
+        });
         
       }
       else if(res.role=="admin")

@@ -115,7 +115,8 @@ export class UploadResumeComponent implements OnInit {
   }
   //public value: Date = new Date();
 
-         
+  public max: Date = new Date(2004, 1, 1);    
+  public value: Date = new Date(2000, 2, 10);
   public onSubmit() {
     this.submitted = true;
     if (this.form.invalid) {

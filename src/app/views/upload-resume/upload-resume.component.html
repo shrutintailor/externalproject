@@ -57,12 +57,16 @@
       <kendo-label [for]="dateofbirth" class="k-display-block" text="DateOfBirth"></kendo-label>
       <kendo-datepicker
       
-        #dateofbirth
+        #dateofbirth  
         formControlName="dateofbirth"
         [format]="shortFormat"
-        [(ngModel)]=data.dateofbirth
+        [max]="max"
+        calendarType="classic"
+          [value]="value"
+       
+        [(ngModel)]=data.dateofbirth 
       ></kendo-datepicker>
-      <kendo-formerror>Error: Date Of Birth is required</kendo-formerror>
+      <kendo-formerror>Error: Date Of Birth is required Or Your age are not valid</kendo-formerror>
     </kendo-formfield>
     <kendo-formfield orientation="horizontal" showHints="initial">
       <label class="k-label">Gender</label>

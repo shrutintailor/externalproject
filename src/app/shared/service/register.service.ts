@@ -183,4 +183,12 @@ readonly APIResume="https://localhost:5200/api/Resume";
     //   map((response : any) => Response)
     // );
   }
+  deductcompanypoints(val:any)
+  {
+    
+    var objData= {
+      Email : val
+    }
+    return this.http.post(this.APIUrl+'/DeductCompanyPoints',objData);
+  }
 }
