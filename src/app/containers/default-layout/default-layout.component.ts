@@ -2,6 +2,7 @@ import {Component,OnInit} from '@angular/core';
 import { navItems } from '../../_nav';
 import {cnavItems} from '../../_cnav';
 import { Router } from '@angular/router';
+import { NotificationService } from "@progress/kendo-angular-notification";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './default-layout.component.html'
@@ -15,7 +16,7 @@ export class DefaultLayoutComponent implements OnInit{
   toggleMinimize(e) {
     this.sidebarMinimized = e;
   }
-  constructor(private router:Router){}
+  constructor(private router:Router,private notificationService: NotificationService){}
   ngOnInit():void
   {
     this.getsession = window.sessionStorage.getItem("username");
@@ -36,5 +37,12 @@ export class DefaultLayoutComponent implements OnInit{
     window.sessionStorage.clear();
     console.log(this.getsession+""+this.role  );
     this.router.navigate(['/login']);
+    this.notificationService.show({
+      content: "Logout",
+      hideAfter: 600,
+      position: { horizontal: "center", vertical: "top" },
+      animation: { type: "fade", duration: 1000 },
+      type: { style: "success", icon: false },
+    });
   }
 }
