@@ -384,7 +384,12 @@ export class DashboardComponent implements OnInit {
   public resumeCount: any;
   public approveCount: any;
   public pendingCount: any;
-  
+  public companyPoints: any;
+  public companyusername:any;
+  public emaildata:any={
+    email:""
+  };
+  public getsession:any;
   ngOnInit(): void {
     if(this.getval==null)
     {
@@ -394,6 +399,7 @@ export class DashboardComponent implements OnInit {
     else
     {
       this.displaycount();
+     
       this.resumecount();
       this.approvecount();
       this.pendingcount();
@@ -410,6 +416,7 @@ export class DashboardComponent implements OnInit {
       this.companyCount=data;
     });
   }
+ 
   public resumecount(){
     this.service.displayresumecount().subscribe(data=>{
       this.resumeCount=data;

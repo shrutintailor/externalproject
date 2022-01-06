@@ -13,19 +13,7 @@
          [pageable]="true"
        
         >
-         <!-- selectable="true"
-        [kendoGridSelectBy]="rowSelectionKey"
-        [selectedKeys]="selectedKeys" -->
-            <!-- <kendo-grid-command-column title="command" width="220">
-                <ng-template kendoGridCellTemplate let-isNew="isNew">
-                    <button kendoGridEditCommand [primary]="true">Edit</button>
-                    <button kendoGridRemoveCommand>Remove</button>
-                    <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button>
-                    <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
-                </ng-template>e
-            </kendo-grid-command-column> -->
             <kendo-grid-column field="id" [width]="100" title="ID"></kendo-grid-column>
-            <!-- <kendo-grid-column field="companyid" [width]="150" title="CompanyId"></kendo-grid-column> -->
             <kendo-grid-column field="candidatename" [width]="150" title="CandidateName"></kendo-grid-column>
             <kendo-grid-column field="dob" [width]="150" title="Date of Birth"></kendo-grid-column>
             <kendo-grid-column field="gender" [width]="150" title="Gender"></kendo-grid-column>

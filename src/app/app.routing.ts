@@ -165,6 +165,10 @@ export const routes: Routes = [
       {
         path: 'editcompany',
         loadChildren: () => import('./views/editcompany/editcompany.module').then(m =>m.EditcompanyModule)
+      },
+      {
+        path: 'hirecandidates',
+        loadChildren: () => import('./views/hirecandidates/hirecandidates.module').then(m =>m.HirecandidatesModule)
       }
     ]
   },

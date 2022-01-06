@@ -379,13 +379,17 @@ public lineChart1Labels: Array<any> = ['January', 'February', 'March', 'April', 
   public random(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
-  public companyCount: any;
+  public companyPoints: any;
   public resumeCount: any;
   public approveCount: any;
   public pendingCount: any;
-  
+  public companyusername:any;
+  public emaildata:any={
+    email:""
+  };
+  public getsession:any;
   ngOnInit(): void {
-    this.displaycount();
+    this.displaypoints();
     this.resumecount();
     this.approvecount();
     this.pendingcount();
@@ -396,23 +400,36 @@ public lineChart1Labels: Array<any> = ['January', 'February', 'March', 'April', 
       this.mainChartData3.push(65);
     }
   }
-  public displaycount(){
-    this.service.displaycompanycount().subscribe(data=>{
-      this.companyCount=data;
+  public displaypoints(){
+    this.getsession = window.sessionStorage.getItem("username");
+    console.log(this.getsession);
+    this.emaildata.email=this.getsession;
+    this.service.getcompanypoints(this.emaildata).subscribe(data=>{
+      console.log(data);
+      this.companyPoints=data;
     });
   }
   public resumecount(){
-    this.service.displayresumecount().subscribe(data=>{
+    this.getsession = window.sessionStorage.getItem("username");
+    console.log(this.getsession);
+    this.emaildata.email=this.getsession;
+    this.service.getcompanyresumecount(this.emaildata).subscribe(data=>{
       this.resumeCount=data;
     });
   }
   public approvecount(){
-    this.service.displayapprovecount().subscribe(data=>{
+    this.getsession = window.sessionStorage.getItem("username");
+    console.log(this.getsession);
+    this.emaildata.email=this.getsession;
+    this.service.getcompanyapprovecount(this.emaildata).subscribe(data=>{
       this.approveCount=data;
     });
   }
   public pendingcount(){
-    this.service.displaypendingcount().subscribe(data=>{
+    this.getsession = window.sessionStorage.getItem("username");
+    console.log(this.getsession);
+    this.emaildata.email=this.getsession;
+    this.service.getcompanypendingcount(this.emaildata).subscribe(data=>{
       this.pendingCount=data;
     });
   }

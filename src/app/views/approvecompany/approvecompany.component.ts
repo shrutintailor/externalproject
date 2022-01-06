@@ -55,6 +55,7 @@ export class ApprovecompanyComponent implements OnInit {
       if(res.toString())
       {
         console.log("Ok:-"+res.toString());
+        this.router.navigate(['/viewresume']);
       }
       else
       {

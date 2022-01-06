@@ -24,6 +24,7 @@ export class RejectedresumeComponent implements OnInit {
   }
   public refreshData(){
     this.service.displayrejectresume().subscribe(data=>{
+      debugger;
       this.gridData=data;
     });
   }
@@ -31,5 +32,29 @@ export class RejectedresumeComponent implements OnInit {
     this.gridState = state;
 
     this.refreshData();
+  }
+  add(dataitem)
+  {  
+    //console.log(dataitem);
+    
+    var val1 = dataitem;
+    //var x = "32";
+    var val: number = +val1;
+    
+    console.log(val);
+    this.service.getpdf(val).subscribe(data=>{
+    
+      
+         debugger;
+        //var val = (data) 
+        console.log(data);
+         //const blob= new Blob([data],{type:'application/pdf'});
+         const url =window.URL.createObjectURL(data);
+
+     
+       window.open(url,'_blank');
+
+      
+  })
   }
 }

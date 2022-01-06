@@ -70,8 +70,9 @@ import { ViewcompanyComponent } from './views/viewcompany/viewcompany.component'
 import { EditcompanyComponent } from './views/editcompany/editcompany.component';
 import { RejectedcompanyComponent } from './views/rejectedcompany/rejectedcompany.component';
 import { RejectedresumeComponent } from './views/rejectedresume/rejectedresume.component';
-import { CompanydashboardComponent } from './views/companydashboard/companydashboard.component';
+//import { CompanydashboardComponent } from './views/companydashboard/companydashboard.component';
 import { CompanyapproveresumeComponent } from './views/companyapproveresume/companyapproveresume.component';
+import { HirecandidatesComponent } from './views/hirecandidates/hirecandidates.component';
 
 
 
@@ -136,8 +137,8 @@ import { CompanyapproveresumeComponent } from './views/companyapproveresume/comp
     EditcompanyComponent,
     RejectedcompanyComponent,
     RejectedresumeComponent,
-    CompanydashboardComponent,
-    CompanyapproveresumeComponent
+    CompanyapproveresumeComponent,
+    HirecandidatesComponent
   ],
   providers: [
     {

@@ -59,6 +59,15 @@ readonly APIResume="https://localhost:5001/api/Resume";
   {
     return this.http.get<any>(this.APIResume+'/GetApproveResume');
   }
+  displayapprovedresume():Observable<any[]>
+  {
+    return this.http.get<any>(this.APIResume+'/GetApprovedResume');
+  }
+  displaycompanyapproveresume(val:any)
+  {
+    return this.http.post<any>(this.APIResume+'/GetCompanyApproveResume',val);
+  }
+
   displayrejectresume():Observable<any[]>
   {
     return this.http.get<any>(this.APIResume+'/GetRejectedResume');
@@ -72,6 +81,7 @@ readonly APIResume="https://localhost:5001/api/Resume";
     console.log("Service:-"+val);
     return this.http.post(this.APIResume+'/UpdateApprove',val);
   }
+  
   displaycompanybyid(val:any)
   {
     return this.http.post<any>(this.APIUrl+'/GetCompanyById',val);
@@ -79,6 +89,11 @@ readonly APIResume="https://localhost:5001/api/Resume";
   getallresume():Observable<any[]>
   {
     return this.http.get<any>(this.APIResume+'/GetAllResume');
+  }
+  getcompanyallresume(val:any)
+  {
+    debugger;
+    return this.http.post<any>(this.APIResume+'/GetCompanyResume',val);
   }
   getpdf(val:any):Observable<any[]>
   {
@@ -98,6 +113,28 @@ readonly APIResume="https://localhost:5001/api/Resume";
     console.log("Admin Session:="+val);
     return this.http.get<any>(this.APIUrl+'/GetAdminData',val);
   }
+  getcompanypoints(val:any)
+  {
+    
+    return this.http.post(this.APIUrl+'/GetCompanyPoints',val);
+  }
+  getcompanyresumecount(val:any)
+  {
+    
+    return this.http.post(this.APIUrl+'/GetCompanyResumeCount',val);
+  }
+  getcompanyapprovecount(val:any)
+  {
+    
+    return this.http.post(this.APIUrl+'/GetCompanyApproveCount',val);
+  }
+  getcompanypendingcount(val:any)
+  {
+    
+    return this.http.post(this.APIUrl+'/GetCompanyPendingCount',val);
+  }
+
+
   displayapprovecompany():Observable<any[]>
   {
     return this.http.get<any>(this.APIUrl+'/GetApproveCompany');
@@ -111,10 +148,20 @@ readonly APIResume="https://localhost:5001/api/Resume";
     console.log("Service:-"+val);
     return this.http.post(this.APIUrl+'/UpdateApproveCompany',val);
   }
+  updateapproveresume(val:any){
+
+    console.log("Service:-"+val);
+    return this.http.post(this.APIResume+'/UpdateApproveResume',val);
+  }
   updaterejectcompany(val:any){
 
     console.log("Service:-"+val);
     return this.http.post(this.APIUrl+'/UpdateRejectCompany',val);
+  }
+  updaterejectresume(val:any){
+
+    console.log("Service:-"+val);
+    return this.http.post(this.APIResume+'/UpdateRejectResume',val);
   }
   companybyid(val:any)
   {

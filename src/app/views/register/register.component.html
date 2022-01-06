@@ -23,11 +23,12 @@
                       <div *ngIf="f.email.errors.required">email is required</div>
                   </div> -->
                   </kendo-formfield>
-                  <kendo-formfield>
+                  <kendo-formfield showHints="initial" showErrors="initial">
                     <kendo-label [for]="type" text="Type"></kendo-label>
-                    <!-- <kendo-textbox formControlName="type" [clearButton]="true" #type required></kendo-textbox>  -->
-                    <input formControlName="type" kendoTextBox #type [(ngModel)]=data.type/>
-                    <kendo-formerror>Error: Type is required</kendo-formerror>
+                    <kendo-autocomplete #type [data]="types" formControlName="type" [(ngModel)]=data.type >
+                    </kendo-autocomplete>
+                    <kendo-formhint align="start">Hint: IT</kendo-formhint>
+                    <kendo-formerror *ngIf="!form.controls.type.required">Error: Type is required</kendo-formerror>
                   </kendo-formfield>  
                   <kendo-formfield>
                     <kendo-label [for]="username" text="Username"></kendo-label>

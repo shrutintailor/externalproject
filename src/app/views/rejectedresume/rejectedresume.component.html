@@ -7,19 +7,19 @@
         [pageable]="true" [sortable]="true" (edit)="editHandler($event)" (remove)="removeHandler($event)" (cancel)="rejectHandler($event)" [navigable]="true" 
         (dataStateChange)="onStateChange($event)" [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
         >
-            <kendo-grid-column field="resumeid" title="ID"> </kendo-grid-column>
+            <kendo-grid-column field="resumeId" title="ID"> </kendo-grid-column>
             <kendo-grid-column field="candidatename" title="CandidateName"></kendo-grid-column>
             <kendo-grid-column field="skill" title="Skill"> </kendo-grid-column>
             <kendo-grid-column field="email" title="Email"> </kendo-grid-column>
-            <kendo-grid-column field="contactno" title="ContactNo"> </kendo-grid-column>
-            <kendo-grid-column field="highestqualification" title="HighestQualification"> </kendo-grid-column>
-            <!-- <kendo-grid-command-column title="command" width="220">
-                <ng-template kendoGridCellTemplate let-isNew="isNew">
-                    <button kendoGridEditCommand [primary]="true">Edit</button>
-                    <button kendoGridRemoveCommand>Approve</button>
-                    <button kendoGridCancelCommand>Reject</button>
+            <kendo-grid-column field="phoneNumber" title="ContactNo"> </kendo-grid-column>
+            <kendo-grid-column field="highestqulification" title="HighestQualification"> </kendo-grid-column>
+            <kendo-grid-command-column title="command" width="220">
+                <ng-template kendoGridCellTemplate let-dataitem>
+                  
+                    <button kendoButton (click)="add(dataitem.id)" >view</button>
+                   
                 </ng-template>
-            </kendo-grid-command-column> -->
+            </kendo-grid-command-column>
         </kendo-grid>
         
     </div>

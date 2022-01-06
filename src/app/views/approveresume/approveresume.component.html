@@ -7,7 +7,8 @@
         [pageable]="true" [sortable]="true" (edit)="editHandler($event)" (remove)="removeHandler($event)" (cancel)="rejectHandler($event)" [navigable]="true" 
         (dataStateChange)="onStateChange($event)" [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
         >
-            <kendo-grid-column field="resumeid" title="ID"> </kendo-grid-column>
+            <kendo-grid-column field="id" [width]="100" title="ID"></kendo-grid-column>
+            <kendo-grid-column field="resumeId" title="ResumeID"> </kendo-grid-column>
             <kendo-grid-column field="candidatename" title="CandidateName"></kendo-grid-column>
             <kendo-grid-column field="skill" title="Skill"> </kendo-grid-column>
             <kendo-grid-column field="email" title="Email"> </kendo-grid-column>
@@ -18,6 +19,7 @@
                     <button  kendoGridEditCommand>Edit</button>
                     <button kendoButton (click)="approveHandler(dataItem)">Approve</button>
                     <button kendoGridRemoveCommand>Reject</button>
+                    <button kendoButton (click)="add(dataItem.id)" >view</button>
                 </ng-template>
             </kendo-grid-command-column>
         </kendo-grid>

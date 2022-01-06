@@ -19,15 +19,20 @@ export class ApproveresumeComponent implements OnInit {
     skip: 0,
     take: 10
 };
+public usernamesession:any;
+  public role:any;
   constructor(private service:RegisterService,private router:Router) { }
-
+  public emaildata:any={
+    email:""
+  };
   ngOnInit(): void {
     this.refreshData();
   }
   public refreshData(){
-    this.service.displayapproveresume().subscribe(data=>{
-      this.gridData=data;
-    });
+        this.service.displayapproveresume().subscribe(data=>{
+        this.gridData=data;
+      });
+    
   }
   public onStateChange(state: State) {
     this.gridState = state;
@@ -44,30 +49,36 @@ export class ApproveresumeComponent implements OnInit {
     const id=dataItem.resumeid;
     this.router.navigate(['/editresume'],{queryParams:{resumeid:id,mode:'edit'},queryParamsHandling:"merge"});
   }
+  public approveHandler(dataItem) {
+  debugger
+    var resumedata={
+      ResumeId:dataItem.resumeId
+    }
+    console.log(resumedata);
+  this.service.updateapproveresume(resumedata).subscribe(res=>{
+    if(res.toString())
+    {
+      console.log("Ok:-"+res.toString());
+      this.router.navigate(['/viewresume']);
+    }
+    else
+    {
+      console.log("Data not found");
+    }
+  });
+}
   public removeHandler({dataItem}) {
-    var companydata={
-      resumeid:dataItem.resumeid,
-      companyid:dataItem.companyid,
-      candidatename:dataItem.candidatename,
-      email:dataItem.email,
-      phoneNumber:dataItem.phoneNumber,
-      skill:dataItem.skill,
-      state:dataItem.state,
-      city:dataItem.city,
-      type:dataItem.type,
-      gender:dataItem.gender,
-      highestqualification:dataItem.highestqualification,
-      previouscompany:dataItem.previouscompany,
-      currentcompany:dataItem.currentcompany,
-      dateofbirth:dataItem.dateofbirth,
-      upload:dataItem.upload,
-    };
-    console.log(companydata);
+    debugger
+    var resumedata={
+      ResumeId:dataItem.resumeId
+    }
+    console.log(resumedata);
     
-    this.service.updateapprove(companydata).subscribe(res=>{
+    this.service.updaterejectresume(resumedata).subscribe(res=>{
       if(res.toString())
       {
         console.log("Ok:-"+res.toString());
+        this.router.navigate(['/rejectedresume']);
       }
       else
       {
@@ -76,5 +87,28 @@ export class ApproveresumeComponent implements OnInit {
     });
     //this.editService.remove(dataItem);
   }
-  
+  add(dataitem)
+  {  
+    console.log(dataitem);
+    
+    var val1 = dataitem;
+    //var x = "32";
+    var val: number = +val1;
+    
+    console.log(val);
+    this.service.getpdf(val).subscribe(data=>{
+    
+      
+         debugger;
+        //var val = (data) 
+        console.log(data);
+         //const blob= new Blob([data],{type:'application/pdf'});
+         const url =window.URL.createObjectURL(data);
+
+     
+       window.open(url,'_blank');
+
+      
+  })
+  }
 }

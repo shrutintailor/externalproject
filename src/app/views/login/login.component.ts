@@ -43,12 +43,21 @@ export class LoginComponent implements OnInit {
      this.service.loginid(val).subscribe(res=>{
       debugger;
       console.log(res.role)
-      if(res)
+      if(res.role=="company")
       {
         
         console.log("ok");
         var setsession = window.sessionStorage.setItem("username",this.data1.email);
-        var setsession1=window.sessionStorage.setItem("role",res.role); 
+        var setsession1=window.sessionStorage.setItem("role",res.role);
+        
+          this.router.navigate(['/companydashboard']);  
+        
+      }
+      else if(res.role=="admin")
+      {
+        console.log("ok");
+        var setsession = window.sessionStorage.setItem("username",this.data1.email);
+        var setsession1=window.sessionStorage.setItem("role",res.role);
         this.router.navigate(['/dashboard']);
       }
       else

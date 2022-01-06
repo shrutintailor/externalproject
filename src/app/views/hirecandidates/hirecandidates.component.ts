@@ -7,53 +7,34 @@ import { GridDataResult } from '@progress/kendo-angular-grid';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-viewresume',
-  templateUrl: './viewresume.component.html',
-  styleUrls: ['./viewresume.component.scss']
+  selector: 'app-hirecandidates',
+  templateUrl: './hirecandidates.component.html',
+  styleUrls: ['./hirecandidates.component.scss']
 })
-export class ViewresumeComponent implements OnInit {
-
+export class HirecandidatesComponent implements OnInit {
   public gridData: any[];
-  public usernamesession:any;
-  public role:any;
   public gridState: State = {
     sort: [],
     skip: 0,
     take: 10
 };
   constructor(private service:RegisterService,private router:Router) { }
-  public emaildata:any={
-    email:""
-  };
+
   ngOnInit(): void {
     this.refreshData();
   }
-  public refreshData(){
-    this.usernamesession=window.sessionStorage.getItem("username");
-    this.role=window.sessionStorage.getItem("role");
-    this.emaildata.email=this.usernamesession;
-    if(this.usernamesession!=null && this.role=="company")
-    {
-      this.service.getcompanyallresume(this.emaildata).subscribe(data=>{
-        this.gridData=data;
-        console.log(data);
-      });  
-    }
-    else
-    {
-      this.service.getallresume().subscribe(data=>{
+  public refreshData()
+  {
+      this.service.displayapprovedresume().subscribe(data=>{
         this.gridData=data;
         console.log(data);
       });
-    }
-    
   }
   public onStateChange(state: State) {
     this.gridState = state;
 
     this.refreshData();
   }
-
   add(dataitem)
   {  
     //console.log(dataitem);
@@ -78,12 +59,4 @@ export class ViewresumeComponent implements OnInit {
       
   })
   }
-//   private rowSelectionKey(context: RowArgs): string {
-//     // Here you can access the row item (model) from context.dataItem.
-//     return context.index;
-// }
-// handleButtonClick() {
-//   const selected = this.selectedKeys.length ? 'Index: ' + this.selectedKeys[0] : 'Nothing selected';
-//   alert(selected);
-// }
 }

@@ -33,6 +33,18 @@ export const cnavItems: INavData[] = [
     ]
   },
   {
+    name: 'Hire',
+    url: '/base',
+    icon: 'icon-puzzle',
+    children: [
+      {
+        name: 'Hire Candidates',
+        url: '/hirecandidates',
+        icon: 'icon-puzzle'
+      }
+    ]
+  },
+  {
     name: 'Reports',
     url: '/base',
     icon: 'icon-puzzle',
