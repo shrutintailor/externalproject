@@ -9,7 +9,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { RegisterService } from '../app/shared/service/register.service';
 import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-
+import { NotificationModule } from "@progress/kendo-angular-notification";
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -113,7 +113,8 @@ import { HirecandidatesComponent } from './views/hirecandidates/hirecandidates.c
     DropDownsModule,
     UploadsModule,
     ExcelExportModule,
-    DialogsModule
+    DialogsModule,
+    NotificationModule
   ],
   declarations: [
     AppComponent,

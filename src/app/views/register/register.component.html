@@ -49,11 +49,7 @@
                     <input formControlName="address" kendoTextBox #address [(ngModel)]=data.address/>
                     <kendo-formerror>Error: Address is required</kendo-formerror>
                   </kendo-formfield>
-                  <kendo-formfield>
-                    <kendo-label [for]="password" text="Password"></kendo-label>
-                    <input formControlName="password" kendoTextBox #password  [(ngModel)]=data.password/>
-                    <kendo-formerror>Error: Password is required</kendo-formerror>
-                  </kendo-formfield>
+                  
                   <!-- <kendo-formfield>
                     <kendo-label [for]="state" text="State"></kendo-label>
                     <input formControlName="state" kendoTextBox #state placeholder="state" [(ngModel)]=data.state/>
@@ -78,6 +74,18 @@
                     </kendo-autocomplete>
                     <kendo-formhint align="start">Hint: Only Indian City</kendo-formhint>
                     <kendo-formerror *ngIf="!form.controls.city.required">Error: City is required</kendo-formerror>
+                  </kendo-formfield>
+                  <kendo-formfield>
+                    <kendo-label [for]="password" text="Password"></kendo-label>
+                    <input formControlName="password" kendoTextBox #password type="password" [(ngModel)]=data.password/>
+                    <kendo-formerror>Error: Password is required</kendo-formerror>
+                  </kendo-formfield>
+                  <kendo-formfield>
+                    <kendo-label [for]="confrirmpassword" text="ConfirmPassword"></kendo-label>
+                    <input formControlName="confirmpassword" kendoTextBox #confirmpassword type="password" [(ngModel)]=data.confirmpassword/>
+                    <!-- <span (click)="password-field.type=password-field.type=='password'?'text':'password'" class="fa fa-fw field-icon toggle-password"
+                    [ngClass]="(password-field.type=='password')?' fa-eye':' fa-eye-slash'"></span> -->
+                    <kendo-formerror>Error: Password is required</kendo-formerror>
                   </kendo-formfield>
                   <kendo-formfield>
                     <kendo-label [for]="website" text="Website Url"></kendo-label>

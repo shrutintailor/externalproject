@@ -10,12 +10,12 @@ import { catchError, map } from 'rxjs/operators';
 export class RegisterService {
 
   //readonly APIUrl="http://localhost:5001/api/Post";
-readonly APIUrl="https://localhost:5001/api/Post";
-readonly APIResume="https://localhost:5001/api/Resume";
+readonly APIUrl="https://localhost:5200/api/Post";
+readonly APIResume="https://localhost:5200/api/Resume";
   constructor(private http:HttpClient) { }
 
   insertcompany(val:any){
-    //debugger; 
+    debugger; 
     
     console.log(val);
     //return this.http.post(this.APIUrl+'Post/AddCompany',objData);

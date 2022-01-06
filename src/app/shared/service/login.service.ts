@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class LoginService {
   //readonly APIUrl ="http://localhost:5000/api";
-  readonly APIUrl="https://localhost:5001/api/Post";
+  readonly APIUrl="https://localhost:5200/api/Post";
   constructor(private http:HttpClient) { }
   loginid(val:any)
   {

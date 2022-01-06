@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRouteSnapshot,Router,RouterStateSnapshot } from '@angular/router';
-
+import { NotificationService } from "@progress/kendo-angular-notification";
 @Component({
   selector: 'app-approveresume',
   templateUrl: './approveresume.component.html',
@@ -21,7 +21,7 @@ export class ApproveresumeComponent implements OnInit {
 };
 public usernamesession:any;
   public role:any;
-  constructor(private service:RegisterService,private router:Router) { }
+  constructor(private service:RegisterService,private router:Router,private notificationService: NotificationService) { }
   public emaildata:any={
     email:""
   };
@@ -50,20 +50,35 @@ public usernamesession:any;
     this.router.navigate(['/editresume'],{queryParams:{resumeid:id,mode:'edit'},queryParamsHandling:"merge"});
   }
   public approveHandler(dataItem) {
-  debugger
+  
     var resumedata={
       ResumeId:dataItem.resumeId
     }
     console.log(resumedata);
   this.service.updateapproveresume(resumedata).subscribe(res=>{
+    debugger;
     if(res.toString())
     {
       console.log("Ok:-"+res.toString());
       this.router.navigate(['/viewresume']);
+      this.notificationService.show({
+        content: "Resume Appoved",
+        hideAfter: 600,
+        position: { horizontal: "center", vertical: "bottom" },
+        animation: { type: "fade", duration: 1000 },
+        type: { style: "success", icon: false },
+      });
     }
     else
     {
       console.log("Data not found");
+      this.notificationService.show({
+        content: "Not Found",
+        hideAfter: 600,
+        position: { horizontal: "center", vertical: "bottom" },
+        animation: { type: "fade", duration: 1000 },
+        type: { style: "error", icon: false },
+      });
     }
   });
 }
@@ -79,10 +94,24 @@ public usernamesession:any;
       {
         console.log("Ok:-"+res.toString());
         this.router.navigate(['/rejectedresume']);
+        this.notificationService.show({
+          content: "Resume Reject",
+          hideAfter: 600,
+          position: { horizontal: "center", vertical: "bottom" },
+          animation: { type: "fade", duration: 1000 },
+          type: { style: "success", icon: false },
+        });
       }
       else
       {
         console.log("Data not found");
+        this.notificationService.show({
+          content: "Not Found",
+          hideAfter: 600,
+          position: { horizontal: "center", vertical: "bottom" },
+          animation: { type: "fade", duration: 1000 },
+          type: { style: "error", icon: false },
+        });
       }
     });
     //this.editService.remove(dataItem);
@@ -94,18 +123,14 @@ public usernamesession:any;
     var val1 = dataitem;
     //var x = "32";
     var val: number = +val1;
-    
+    debugger;
     console.log(val);
     this.service.getpdf(val).subscribe(data=>{
-    
-      
          debugger;
         //var val = (data) 
         console.log(data);
          //const blob= new Blob([data],{type:'application/pdf'});
          const url =window.URL.createObjectURL(data);
-
-     
        window.open(url,'_blank');
 
       

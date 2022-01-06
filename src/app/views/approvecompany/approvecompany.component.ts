@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRouteSnapshot,Router,RouterStateSnapshot } from '@angular/router';
-
+import { NotificationService } from "@progress/kendo-angular-notification";
 @Component({
   selector: 'app-approvecompany',
   templateUrl: './approvecompany.component.html',
@@ -19,7 +19,7 @@ export class ApprovecompanyComponent implements OnInit {
     skip: 0,
     take: 10
 };
-  constructor(private service:RegisterService,private router: Router) { }
+  constructor(private service:RegisterService,private router: Router,private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.refreshData();
@@ -56,10 +56,24 @@ export class ApprovecompanyComponent implements OnInit {
       {
         console.log("Ok:-"+res.toString());
         this.router.navigate(['/viewresume']);
+        this.notificationService.show({
+          content: "Company Appoved",
+          hideAfter: 600,
+          position: { horizontal: "center", vertical: "bottom" },
+          animation: { type: "fade", duration: 1000 },
+          type: { style: "success", icon: false },
+        });
       }
       else
       {
         console.log("Data not found");
+        this.notificationService.show({
+          content: "Not Found",
+          hideAfter: 600,
+          position: { horizontal: "center", vertical: "bottom" },
+          animation: { type: "fade", duration: 1000 },
+          type: { style: "error", icon: false },
+        });
       }
     });
   }
@@ -80,10 +94,24 @@ export class ApprovecompanyComponent implements OnInit {
       if(res.toString())
       {
         console.log("Rejected:-"+res.toString());
+        this.notificationService.show({
+          content: "Company Rejected",
+          hideAfter: 600,
+          position: { horizontal: "center", vertical: "bottom" },
+          animation: { type: "fade", duration: 1000 },
+          type: { style: "success", icon: false },
+        });
       }
       else
       {
         console.log("Data not found");
+        this.notificationService.show({
+          content: "Not Found",
+          hideAfter: 600,
+          position: { horizontal: "center", vertical: "bottom" },
+          animation: { type: "fade", duration: 1000 },
+          type: { style: "error", icon: false },
+        });
       }
     });
 

@@ -5,6 +5,7 @@ import { Company } from '../../Company';
 import { RegisterService } from '../../../app/shared/service/register.service';
 import {states,citys,types} from './data';
 import { ActivatedRouteSnapshot,Router,RouterStateSnapshot } from '@angular/router';
+import { NotificationService } from "@progress/kendo-angular-notification";
 @Component({
   selector: 'app-dashboard',
   templateUrl: 'register.component.html',
@@ -45,6 +46,7 @@ export class RegisterComponent implements OnInit{
    address:"",
    username:"",
    password:"",
+   confirmpassword:"",
    contactno:"",
    state:"",
    city:"",
@@ -68,7 +70,7 @@ export class RegisterComponent implements OnInit{
   //   });*/
 
  // }
-  constructor(private service:RegisterService,private router:Router) 
+  constructor(private service:RegisterService,private router:Router,private notificationService: NotificationService) 
   { 
 
   }
@@ -81,6 +83,7 @@ export class RegisterComponent implements OnInit{
       address: new FormControl(this.data.address, [Validators.required]),
       username: new FormControl(this.data.username, [Validators.required]),
       password: new FormControl(this.data.password, [Validators.required]),
+      confirmpassword: new FormControl(this.data.confirmpassword, [Validators.required]),
       contactno: new FormControl(this.data.contactno, [Validators.required]),
       email: new FormControl(this.data.email, [
         Validators.required,
@@ -98,49 +101,7 @@ export class RegisterComponent implements OnInit{
     });
   }
 
-// CreateForm()
-// {
-//   this.form = this.fb.group({
-//     /*companyname: new FormControl(this.data.companyname, [Validators.required]),
-//       type: new FormControl(this.data.type, [Validators.required]),
-//       address: new FormControl(this.data.address, [Validators.required]),
-//       username: new FormControl(this.data.username, [Validators.required]),
-//       password: new FormControl(this.data.password, [Validators.required]),
-//       contactno: new FormControl(this.data.contactno, [Validators.required]),
-//       email: new FormControl(this.data.email, [
-//         Validators.required,
-//         Validators.email,
-//       ]),*/
 
-//       companyname : ['',[Validators.required]],
-//       type : ['',[Validators.required]],
-//       address : ['',[Validators.required]],
-//       username : ['',[Validators.required]],
-//       password : ['',[Validators.required]],
-//       contactno : ['',[Validators.required]],
-//       email : ['',[Validators.required]],
-//   })
-// }
-/*submitForm()
-{
-  if(this.form.valid)
-  {
-  this.service.addCompany(this.form.value)
-  .subscribe(data => {
-    debugger;
-    if(data['data'])
-    {
-      alert("Success");
-    }
-    else{
-      alert("Failed");
-    }
-  })
-}
-else{
-  alert("Failed");
-}
-}*/
   public onSubmit()
   {
     this.submitted = true;
@@ -167,16 +128,39 @@ else{
     };
     console.log(companydata);
    
+    let pass=this.form.value.password;
+    let cnfpass=this.form.value.confirmpassword;
+    //let oldpas=this.form.value.oldpassword;
+    if(pass!=cnfpass)
+    {
+      alert("password are not same");
+    }
+    else
+    {
       this.service.insertcompany(companydata).subscribe(res=>{
-        // alert(res.toString());
-        //this.refreshDepList();
+    
         if(res.toString())
         {
+          console.log(companydata);
           console.log("ok");
           this.router.navigate(['/login']);
+          this.notificationService.show({
+            content: "successFull Register Admin Will Approve Your Company If all Data Is Valid",
+            cssClass: "button-notification",
+            hideAfter: 600,
+            animation: { type: "slide", duration: 4 },
+            position: { horizontal: "center", vertical: "top" },
+            type: { style: "success", icon: true },
+            closable: true,
+          });
         }
       });
     }
+  
+    
+
+  }
+   
 
     public clearForm(): void {
       this.submitted = false;

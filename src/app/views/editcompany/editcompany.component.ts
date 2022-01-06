@@ -4,7 +4,7 @@ import { RegisterService } from '../../../app/shared/service/register.service';
 import {states,citys,types} from './data';
 import {Router,ActivatedRoute } from '@angular/router';
 import { DragAndDropAssetService } from '@progress/kendo-angular-treeview';
-
+import { NotificationService } from "@progress/kendo-angular-notification";
 @Component({
   selector: 'app-editcompany',
   templateUrl: './editcompany.component.html',
@@ -54,7 +54,7 @@ export class EditcompanyComponent implements OnInit {
   };
   public getsession:any;
 
-  constructor(private service:RegisterService,private router:Router,private activateRoute:ActivatedRoute) { 
+  constructor(private service:RegisterService,private router:Router,private activateRoute:ActivatedRoute,private notificationService: NotificationService) { 
     this.activateRoute.queryParamMap.subscribe(param =>{
       this.companyid=+param.get('id')||0;
       this.mode=param.get('mode')||'';
@@ -145,6 +145,13 @@ export class EditcompanyComponent implements OnInit {
       if(res.toString())
       {
         this.router.navigate(["/approvecompany"]);
+        this.notificationService.show({
+          content: "Edit SuccessFull",
+          hideAfter: 600,
+          position: { horizontal: "center", vertical: "bottom" },
+          animation: { type: "fade", duration: 1000 },
+          type: { style: "success", icon: false },
+        });
       }
     });
     }

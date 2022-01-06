@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UpladresumeService {
   
-  readonly APIResume="https://localhost:5001/api/Resume";
+  readonly APIResume="https://localhost:5200/api/Resume";
   constructor(private http:HttpClient) { }
  
   upload(objData):Observable<any[]>

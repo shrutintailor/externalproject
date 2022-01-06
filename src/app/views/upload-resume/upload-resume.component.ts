@@ -1,143 +1,3 @@
-// import { Component,Injectable, OnInit,ViewEncapsulation } from '@angular/core';
-// import { Validators, FormGroup, FormControl, FormBuilder } from "@angular/forms";
-// import {states,citys,types} from './data';
-// import { HttpClient,HttpHeaders} from '@angular/common/http';
-// import { FileRestrictions } from '@progress/kendo-angular-upload';
-
-// @Component({
-//   selector: 'app-upload-resume',
-//   templateUrl: './upload-resume.component.html',
-//   encapsulation: ViewEncapsulation.None,
-//   //styleUrls: ['./upload-resume.component.scss']
-//   styles:[
-//     `
-//     .example {
-//       display: flex;
-//       justify-content: center;
-//   }
-//   .wrap {
-//       display: flex;
-//       justify-content: space-between;
-//   }
-//   .k-form {
-//       width: 400px;
-//   }
-//   .k-list-horizontal .k-radio-item {
-//     margin: 0 10px 0 0;
-//   }
-//     `
-//   ]
-  
-// })
-// export class UploadResumeComponent implements OnInit {
-//   uploadSaveUrl = 'saveUrl' // should represent an actual API endpoint
-//   uploadRemoveUrl = 'removeUrl'; // should represent an actual API 
-//   public phoneNumberValue: string = "";
-//   public phoneNumberMask: string = "(999) 000-00-00";
-//   public form: FormGroup;
-//   public data: any = {
-//     candidatename: "",
-//     email: "",
-//     phoneNumber: this.phoneNumberValue,
-//     skill: "",
-//     state:"",
-//     city:"",
-//     type:"",
-//     gender:null,
-//     dateofbirth: null,
-//     highestqualification:"",
-//     previouscompany:"",
-//     currentcompany:"",
-//     upload:""
-//   };
-//   public states: Array<string> = states;
-//   public citys: Array<string> = citys;
-//   public types: Array<string> = types;
-//   public userImages: Array<any>;
-//   public submitted = false;
-//   public myRestrictions: FileRestrictions = {
-//     allowedExtensions: ['pdf']
-//   };
-//   constructor(private formBuilder: FormBuilder) { 
-    
-//   }
-//   fileToUpload:any;
-  
-//   ngOnInit(): void {
-//     this.form = new FormGroup({
-//       candidatename: new FormControl(this.data.fullName, [Validators.required]),
-//       email: new FormControl(this.data.email, [
-//         Validators.required,
-//         Validators.email,
-//       ]),
-//       phoneNumber: new FormControl(this.data.phoneNumber, [
-//         Validators.required,
-//       ]),
-//       skill: new FormControl(this.data.comments),
-//       state: new FormControl(this.data.state, [Validators.required]),
-//       city: new FormControl(this.data.city, [Validators.required]),
-//       type: new FormControl(this.data.type, [Validators.required]),
-//       gender: new FormControl(this.data.gender, [Validators.required]),
-//       dateofbirth: new FormControl(this.data.dateofbirth, [
-//         Validators.required,
-//       ]),
-//       highestqualification: new FormControl(this.data.highestqualification, [Validators.required]),
-//       previouscompany: new FormControl(this.data.previouscompany, [Validators.required]),
-//       currentcompany: new FormControl(this.data.currentcompany, [Validators.required]),
-//       upload: new FormControl(this.data.upload, [Validators.required])
-//     });
-//   }
-//   // public submitForm(): void {
-    
-//   //   //console.log(this.form.value);
-//   // }
-//   public fileToUpload:any;
-//   // public submitForm(): void {
-    
-//   //   //console.log(this.form.value);
-//   // }
- 
-//   handleFileInput(e:any)
-//   {
-
-//     this.fileToUpload=e?.target?.files[0];
-//   }
-//   //public value: Date = new Date();
-
-
-//   public onSubmit() {
-//     this.submitted = true;
-//     var companydata={
-//       candidatename:this.data.candidatename,
-//       email:this.data.email,
-//       phoneNumber:this.data.phoneNumber,
-//       skill:this.data.skill,
-//       state:this.data.state,
-//       city:this.data.city,
-//       type:this.data.type,
-//       gender:this.data.gender,
-//       highestqualification:this.data.highestqualification,
-//       previouscompany: this.data.previouscompany,
-//       currentcompany: this.data.currentcompany,
-//       dateofbirth:this.data.dateofbirth,
-//       upload:this.data.upload,
-//     };
-//     console.log(companydata);
-   
-
-//     // display form values on success
-//    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
-// }
-
-//   public clearForm(): void {
-//     this.submitted = false;
-//     this.form.reset();
-//   }
-// }
-
-
-
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Injectable, OnInit,ViewEncapsulation } from '@angular/core';
 import { Validators, FormGroup, FormControl, FormBuilder } from "@angular/forms";
@@ -148,6 +8,7 @@ import { RegisterService } from '../../shared/service/register.service';
 import { UpladresumeService } from '../../shared/service/upladresume.service';
 import { ResumereportRoutingModule } from '../resumereport/resumereport-routing.module';
 import {states,citys,types} from './data';
+import { NotificationService } from "@progress/kendo-angular-notification";
 @Component({
   selector: 'app-upload-resume',
   templateUrl: './upload-resume.component.html',
@@ -204,7 +65,7 @@ export class UploadResumeComponent implements OnInit {
   public myRestrictions: FileRestrictions = {
     allowedExtensions: ['pdf']
   };
-  constructor(private formBuilder: FormBuilder,private service:UpladresumeService,private router:Router,private http:HttpClient) { 
+  constructor(private formBuilder: FormBuilder,private service:UpladresumeService,private router:Router,private http:HttpClient,private notificationService: NotificationService) { 
     
   }
  
@@ -288,6 +149,13 @@ export class UploadResumeComponent implements OnInit {
        // console.log(companydata);
         console.log("ok");
         this.router.navigate(['/dashboard']);
+        this.notificationService.show({
+          content: "SuccessFull  Upload ",
+          hideAfter: 600,
+          position: { horizontal: "center", vertical: "bottom" },
+          animation: { type: "fade", duration: 1000 },
+          type: { style: "success", icon: false },
+        });
       }
       
    });

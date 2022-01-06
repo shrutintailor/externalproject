@@ -64,18 +64,12 @@ export class ViewresumeComponent implements OnInit {
     
     console.log(val);
     this.service.getpdf(val).subscribe(data=>{
-    
-      
          debugger;
         //var val = (data) 
         console.log(data);
          //const blob= new Blob([data],{type:'application/pdf'});
          const url =window.URL.createObjectURL(data);
-
-     
-       window.open(url,'_blank');
-
-      
+       window.open(url,'_blank');     
   })
   }
 //   private rowSelectionKey(context: RowArgs): string {
